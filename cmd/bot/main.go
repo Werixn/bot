@@ -37,7 +37,7 @@ func main() {
 	setService := set.NewService()
 
 	commander := commands.NewCommander(bot, exerciseService)
-	commander2 := commands.NewCommander(bot, setService)
+	commander2 := commands.NewSecondCommander(bot, setService)
 
 	for update := range updates {
 		commander.HandleUpdate(update)

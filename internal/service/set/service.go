@@ -7,6 +7,6 @@ func NewService() *Service {
 	return &Service{}
 }
 
-func (s *Service) All() {
+func (s *Service) All() []Set {
 	return allSets
 }
