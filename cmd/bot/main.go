@@ -4,8 +4,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/Werixn/bot/internal/app/commands"
-	"github.com/Werixn/bot/internal/service/exercise"
+	"github.com/werixn/bot/internal/app/commands"
+	"github.com/werixn/bot/internal/app/service/exercise"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/joho/godotenv"

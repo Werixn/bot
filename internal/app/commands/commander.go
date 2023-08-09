@@ -1,12 +1,12 @@
 package commands
 
 import (
-	"https://github.com/Werixn/bot/bot/internal/service/product"
+	"github.com/Werixn/bot/internal/service/exercise"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 )
 
 type Commander struct {
-	bot            *tgbotapi.BotAPI
+	bot             *tgbotapi.BotAPI
 	exerciseService *exercise.Service
 }
 
@@ -15,7 +15,7 @@ func NewCommander(
 	exerciseService *exercise.Service,
 ) *Commander {
 	return &Commander{
-		bot:            bot,
+		bot:             bot,
 		exerciseService: exerciseService,
 	}
 }
