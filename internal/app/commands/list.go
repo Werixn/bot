@@ -6,12 +6,21 @@ import (
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 )
 
+func (c *Commander) All(inputeMessage *tgbotapi.Message) {
+	outputMsgText := "Вот все ваши сеты"
+	sets := c.setService.List()
+	for _, p := range sets {
+		outputMsgText += "set: " + p.Exercises
+		outputMsgText += "\n"
+	}
+}
+
 func (c *Commander) List(inputMessage *tgbotapi.Message) {
 	outputMsgText := "Here all the exercises: \n\n"
 
 	exercises := c.exerciseService.List()
 	for _, p := range exercises {
-		outputMsgText += p.Title
+		outputMsgText += "exercise: " + p.Title
 		outputMsgText += "\n"
 	}
 
