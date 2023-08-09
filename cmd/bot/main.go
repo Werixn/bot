@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"github.com/werixn/bot/internal/app/commands"
-	"github.com/werixn/bot/internal/app/service/exercise"
+	"github.com/werixn/bot/internal/service/exercise"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/joho/godotenv"
