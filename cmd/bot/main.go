@@ -7,7 +7,7 @@ import (
 	"github.com/werixn/bot/internal/app/commands"
 	"github.com/werixn/bot/internal/app/service/exercise"
 
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/joho/godotenv"
 )
 
