@@ -6,6 +6,7 @@ import (
 
 	"github.com/werixn/bot/internal/app/commands"
 	"github.com/werixn/bot/internal/service/exercise"
+	"github.com/werixn/bot/internal/service/set"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/joho/godotenv"
@@ -33,10 +34,13 @@ func main() {
 	}
 
 	exerciseService := exercise.NewService()
+	setService := set.NewService()
 
 	commander := commands.NewCommander(bot, exerciseService)
+	commander2 := commands.NewCommander(bot, setService)
 
 	for update := range updates {
 		commander.HandleUpdate(update)
+		commander2.HandleUpdate(update)
 	}
 }
