@@ -1,8 +1,8 @@
 package commands
 
 import (
-	"github.com/Werixn/bot/internal/service/exercise"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
+	"github.com/werixn/bot/internal/service/exercise"
 )
 
 type Commander struct {
