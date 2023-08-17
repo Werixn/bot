@@ -1,14 +1,12 @@
 package main
 
 import (
+	"bot/cmd/bot/product"
+	"bot/internal/app/commands"
 	"log"
 	"os"
 
-	"github.com/werixn/bot/internal/app/commands"
-	"github.com/werixn/bot/internal/service/exercise"
-	"github.com/werixn/bot/internal/service/set"
-
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/joho/godotenv"
 )
 
@@ -28,19 +26,13 @@ func main() {
 		Timeout: 60,
 	}
 
-	updates, err := bot.GetUpdatesChan(u)
+	updates := bot.GetUpdatesChan(u)
 	if err != nil {
 		log.Panic(err)
 	}
-
-	exerciseService := exercise.NewService()
-	setService := set.NewService()
-
-	commander := commands.NewCommander(bot, exerciseService)
-	commander2 := commands.NewSecondCommander(bot, setService)
-
+	productService := product.NewService()
+	commander := commands.NewCommander(bot, productService)
 	for update := range updates {
 		commander.HandleUpdate(update)
-		commander2.HandleUpdate(update)
 	}
 }

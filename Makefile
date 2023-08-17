@@ -1,4 +1,7 @@
-.PHONY: run 
-run:  
-	go run cmd/bot/main.go
-	
+.PHONY: dc run 
+
+dc: 
+	docker-compose up --remove-orphans --build
+
+run:
+	go build -o app cmd/bot/main.go

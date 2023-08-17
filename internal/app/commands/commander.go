@@ -1,37 +1,36 @@
 package commands
 
 import (
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/werixn/bot/internal/service/exercise"
-	"github.com/werixn/bot/internal/service/set"
+	"bot/cmd/bot/product"
+
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
+var registeredCommands = map[string]func(c *Commander, msg *tgbotapi.Message){}
+
 type Commander struct {
-	bot             *tgbotapi.BotAPI
-	exerciseService *exercise.Service
-}
-
-type Commander2 struct {
-	bot        *tgbotapi.BotAPI
-	setService *set.Service
-}
-
-func NewSecondCommander(
-	bot *tgbotapi.BotAPI,
-	setService *set.Service,
-) *Commander2 {
-	return &Commander2{
-		bot:        bot,
-		setService: setService,
-	}
+	bot            *tgbotapi.BotAPI
+	productService *product.Service
 }
 
 func NewCommander(
 	bot *tgbotapi.BotAPI,
-	exerciseService *exercise.Service,
+	productService *product.Service,
 ) *Commander {
 	return &Commander{
-		bot:             bot,
-		exerciseService: exerciseService,
+		bot:            bot,
+		productService: productService,
+	}
+}
+
+func (c *Commander) HandleUpdate(update tgbotapi.Update) {
+	if update.Message == nil { // If we got a message
+		return
+	}
+	command, ok := registeredCommands[update.Message.Command()]
+	if ok {
+		command(c, update.Message)
+	} else {
+		c.Default(update.Message)
 	}
 }
